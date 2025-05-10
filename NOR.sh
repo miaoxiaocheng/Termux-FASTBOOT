@@ -27,12 +27,12 @@ while true; do
     case $choice in
         1)
             echo -e "${BLUE}正在连接设备...${NC}"
-            bash -c "$(curl -sL https://raw.githubusercontent.com/miaoxiaocheng/Termux-FASTBOOT/main/USB.sh)"
+            bash -c "$(curl -sL https://www.gitproxy.click/https://github.com/miaoxiaocheng/Termux-FASTBOOT/blob/main/USB.sh)"
             read -n 1 -s -r -p "按任意键返回菜单..."
             ;;
         2)
             echo -e "${CYAN}进入fastBoot功能...${NC}"
-            bash -c "$(curl -sL https://raw.githubusercontent.com/miaoxiaocheng/Termux-FASTBOOT/main/FASTBOOT2.sh)"
+            bash -c "$(curl -sL https://www.gitproxy.click/https://github.com/miaoxiaocheng/Termux-FASTBOOT/blob/main/FASTBOOT2.sh)"
             read -n 1 -s -r -p "按任意键返回菜单..."
             ;;
         3)
