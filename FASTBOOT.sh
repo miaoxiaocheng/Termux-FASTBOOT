@@ -28,7 +28,7 @@ execute_flash_script() {
     
     chmod +x "$script_path"
     echo -e "\033[33m[!] 正在执行：$script_path"
-    if sudo sh "$script_path"; then
+    if sudo bash "$script_path"; then
         echo -e "\033[32m[√] 线刷完成！建议执行：fastboot reboot bootloader"
     else
         echo -e "\033[31m[×] 执行失败！可能原因："
