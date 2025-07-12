@@ -22,10 +22,6 @@ if [ ! -f "$FLAG_FILE" ]; then
   # 首次执行：删除目标文件
   rm -f $PREFIX/etc/tls/openssl.cnf
   rm -f $PREFIX/etc/bash.bashrc
-  rm -f $PREFIX/etc/unbound/unbound.conf
-  rm -f $PREFIX/etc/apt/sources.list
-  rm -f $PREFIX/etc/profile.d/init-termux-properties.sh
-  rm -f $PREFIX/etc/motd
 
   # 创建标记文件（空文件即可）
   touch "$FLAG_FILE"
