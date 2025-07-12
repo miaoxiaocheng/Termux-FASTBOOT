@@ -1,31 +1,12 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# Termux环境Fastboot工具（增强版：支持线刷&自定义命令）
-# Termux存储权限申请脚本
-echo -e "\033[1;34m正在申请Termux存储权限...\033[0m"
 
-# 执行权限申请命令
-termux-setup-storage -y
-
-# 检测结果并提示
-if [ -d "$HOME/storage" ]; then
-    echo -e "\n\033[1;32m✔ 权限已授予！\033[0m"
-    echo -e "已创建以下软链接："
-    ls -l $HOME/storage
-    echo -e "\n\033[33m说明：外部存储目录已映射到~/storage的子目录中\033[0m"
-else
-    echo -e "\n\033[1;31m✖ 权限未授予！请手动操作：\033[0m"
-    echo "1. 在Android弹窗中点击【允许】"
-    echo "2. 若误点拒绝："
-    echo "   a. 进入手机系统设置 → 应用管理 → Termux"
-    echo "   b. 找到【存储权限】并开启"
-    echo -e "\n\033[33m提示：重新运行此脚本可再次触发权限申请\033[0m"
-fi
 configure_source() {
     if ! grep -q "mirrors.tuna.tsinghua.edu.cn" $PREFIX/etc/apt/sources.list; then
 rm -f $PREFIX/etc/tls/openssl.cnf && \
 rm -f $PREFIX/etc/bash.bashrc && \
 sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && \
 apt update && apt upgrade -y
+termux-setup-storage -y
     fi
 }
 
