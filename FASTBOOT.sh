@@ -1,21 +1,17 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # 定义日志文件路径
-LOG_FILE="$HOME/storage_permissions.log"
+LOG_FILE="$HOME/storage_permission.log"
 
 # 检查日志文件是否存在
 if [ -f "$LOG_FILE" ]; then
-    echo -e "\033[33m[跳过]\033[0m 日志文件已存在，跳过权限申请流程"
-    exit 0
-fi
-
-# 申请存储权限
-echo -e "\033[36m[步骤1]\033[0m 正在申请Termux存储权限..."
-termux-setup-storage
-
-# 检查上一步命令是否成功执行
-if [ $? -ne 0 ]; then
-    echo -e "\033[31m[错误]\033[0m 存储权限申请失败！" >&2
-    exit 1
+    echo "存储权限已配置，跳过授权步骤"
+else
+    echo "正在请求存储权限..."
+    termux-setup-storage
+    
+    echo "记录存储权限状态..."
+    ls -l ~/storage > "$LOG_FILE" 2>&1
+    echo "权限状态已保存至: $LOG_FILE"
 fi
 
 # 记录存储目录权限
