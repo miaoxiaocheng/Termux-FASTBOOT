@@ -22,6 +22,9 @@ if [ ! -f "$FLAG_FILE" ]; then
   # 首次执行：删除目标文件
   rm -f $PREFIX/etc/tls/openssl.cnf
   rm -f $PREFIX/etc/bash.bashrc
+  rm -f $PREFIX/etc/unbound/unbound.conf
+  rm -f $PREFIX/etc/profile.d/init-termux-properties.sh
+  rm -f $PREFIX/etc/motd
 
   # 创建标记文件（空文件即可）
   touch "$FLAG_FILE"
@@ -31,7 +34,7 @@ else
 fi
 # 换源加速
 sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && \
-apt update && apt upgrade -y
+apt update && apt upgrade -y -o Dpkg::Options::="--force-confnew"
 
 # 包安装检查函数
 pkg_install_check() {
