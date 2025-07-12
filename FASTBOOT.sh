@@ -1,7 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-termux-setup-storage -y
-
 configure_source() {
     if ! grep -q "mirrors.tuna.tsinghua.edu.cn" $PREFIX/etc/apt/sources.list; then
 rm -f $PREFIX/etc/tls/openssl.cnf && \
