@@ -4,26 +4,14 @@ LOG_FILE="$HOME/storage_permission.log"
 
 # 检查日志文件是否存在
 if [ -f "$LOG_FILE" ]; then
-    echo "日志文件已存在 ($LOG_FILE)，无需重复执行权限申请。"
-    exit 0
-fi
-
-# 申请存储权限
-echo "正在申请Termux存储权限..."
-termux-setup-storage
-
-# 检查~/storage目录权限并输出日志
-echo "正在记录存储目录权限状态..."
-ls -l $HOME/storage > "$LOG_FILE" 2>&1
-
-# 验证操作结果
-if [ $? -eq 0 ]; then
-    echo "权限申请成功！日志已保存至: $LOG_FILE"
-    echo "目录权限详情："
-    cat "$LOG_FILE"
+    echo "存储权限已配置，跳过授权步骤"
 else
-    echo "错误：权限记录失败，请检查Termux存储授权状态！" >&2
-    exit 1
+    echo "正在请求存储权限..."
+    termux-setup-storage
+    
+    echo "记录存储权限状态..."
+    ls -l ~/storage > "$LOG_FILE" 2>&1
+    echo "权限状态已保存至: $LOG_FILE"
 fi
 
 # 定义标记文件路径（确保路径可写）
