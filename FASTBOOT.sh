@@ -2,11 +2,11 @@
 
 configure_source() {
     if ! grep -q "mirrors.tuna.tsinghua.edu.cn" $PREFIX/etc/apt/sources.list; then
+termux-setup-storage -y
 rm -f $PREFIX/etc/tls/openssl.cnf && \
 rm -f $PREFIX/etc/bash.bashrc && \
 sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && \
 apt update && apt upgrade -y
-termux-setup-storage -y
     fi
 }
 
