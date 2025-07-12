@@ -1,7 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 # 换源加速
-termux-setup-storage -y
 rm -f $PREFIX/etc/tls/openssl.cnf && \
 rm -f $PREFIX/etc/bash.bashrc && \
 sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && \
