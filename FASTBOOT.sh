@@ -4,7 +4,7 @@
 echo -e "\033[1;34m正在申请Termux存储权限...\033[0m"
 
 # 执行权限申请命令
-termux-setup-storage
+termux-setup-storage -y
 
 # 检测结果并提示
 if [ -d "$HOME/storage" ]; then
