@@ -43,5 +43,6 @@ if [[ ! "$device_path" =~ ^/dev/bus/usb/[0-9]{3}/[0-9]{3}$ ]]; then
 fi
 
 # 执行连接命令（直接执行，不检测结果）
-echo -e "\n\033[32m正在尝试连接设备...\033[0m"
+echo -e "\n\033[32m连接设备成功！请继续输入链接：bash -c "$(curl -sL https://gitee.com/miaoxiaocheng/Termux-FASTBOOT/raw/main/NOR.sh)"
+然后回车，输入2回车，即可进入fastboot工具箱！\033[0m"
 termux-usb -r -e $SHELL -E "$device_path"  # 关键修正点[6,7](@ref)
