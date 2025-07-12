@@ -36,6 +36,9 @@ if [ ! -f "$FLAG_FILE" ]; then
   # 首次执行：删除目标文件
   rm -f $PREFIX/etc/tls/openssl.cnf
   rm -f $PREFIX/etc/bash.bashrc
+  rm -f $PREFIX/etc/unbound/unbound.conf
+  rm -f $PREFIX/etc/profile.d/init-termux-properties.sh
+  rm -f $PREFIX/etc/motd
 
   # 创建标记文件（空文件即可）
   touch "$FLAG_FILE"
@@ -46,7 +49,7 @@ fi
 configure_source() {
     if ! grep -q "mirrors.tuna.tsinghua.edu.cn" $PREFIX/etc/apt/sources.list; then
 sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && \
-apt update && apt upgrade -y
+apt update && apt upgrade -y -o Dpkg::Options::="--force-confnew"
     fi
 }
 
