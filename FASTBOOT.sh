@@ -1,12 +1,13 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # Termux环境Fastboot工具（增强版：支持线刷&自定义命令）
 
-termux-setup-storage
-
 configure_source() {
     if ! grep -q "mirrors.tuna.tsinghua.edu.cn" $PREFIX/etc/apt/sources.list; then
-        sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list
-        apt update && apt upgrade -y
+termux-setup-storage
+rm -f $PREFIX/etc/tls/openssl.cnf && \
+rm -f $PREFIX/etc/bash.bashrc && \
+sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && \
+apt update && apt upgrade -y
     fi
 }
 
