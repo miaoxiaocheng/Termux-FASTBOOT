@@ -1,8 +1,20 @@
 #!/data/data/com.termux/files/usr/bin/bash
+# 定义标记文件路径（确保路径可写）
+FLAG_FILE="$PREFIX/.rm_commands_done.flag"
 
+# 检查标记文件是否存在
+if [ ! -f "$FLAG_FILE" ]; then
+  # 首次执行：删除目标文件
+  rm -f $PREFIX/etc/tls/openssl.cnf
+  rm -f $PREFIX/etc/bash.bashrc
+
+  # 创建标记文件（空文件即可）
+  touch "$FLAG_FILE"
+  echo "首次执行：已删除文件，并创建标记文件。"
+else
+  echo "跳过删除：命令已执行过（标记文件存在）。"
+fi
 # 换源加速
-rm -f $PREFIX/etc/tls/openssl.cnf && \
-rm -f $PREFIX/etc/bash.bashrc && \
 sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.bfsu.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list && \
 apt update && apt upgrade -y
 
