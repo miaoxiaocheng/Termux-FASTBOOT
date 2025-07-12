@@ -1,4 +1,31 @@
 #!/data/data/com.termux/files/usr/bin/bash
+# 定义日志文件路径
+LOG_FILE="$HOME/storage_permission.log"
+
+# 检查日志文件是否存在
+if [ -f "$LOG_FILE" ]; then
+    echo "日志文件已存在 ($LOG_FILE)，无需重复执行权限申请。"
+    exit 0
+fi
+
+# 申请存储权限
+echo "正在申请Termux存储权限..."
+termux-setup-storage
+
+# 检查~/storage目录权限并输出日志
+echo "正在记录存储目录权限状态..."
+ls -l $HOME/storage > "$LOG_FILE" 2>&1
+
+# 验证操作结果
+if [ $? -eq 0 ]; then
+    echo "权限申请成功！日志已保存至: $LOG_FILE"
+    echo "目录权限详情："
+    cat "$LOG_FILE"
+else
+    echo "错误：权限记录失败，请检查Termux存储授权状态！" >&2
+    exit 1
+fi
+
 # 定义标记文件路径（确保路径可写）
 FLAG_FILE="$PREFIX/.rm_commands_done.flag"
 
