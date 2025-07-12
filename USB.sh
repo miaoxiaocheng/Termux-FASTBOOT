@@ -2,7 +2,7 @@
 
 # 换源加速
 sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@' $PREFIX/etc/apt/sources.list
-apt update -y && apt upgrade -y
+apt update && apt upgrade -y
 
 # 包安装检查函数
 pkg_install_check() {
@@ -43,6 +43,5 @@ if [[ ! "$device_path" =~ ^/dev/bus/usb/[0-9]{3}/[0-9]{3}$ ]]; then
 fi
 
 # 执行连接命令（直接执行，不检测结果）
-echo -e "\n\033[32m连接设备成功！请继续输入链接：bash -c "$(curl -sL https://gitee.com/miaoxiaocheng/Termux-FASTBOOT/raw/main/NOR.sh)"
-然后回车，输入2回车，即可进入fastboot工具箱！\033[0m"
+echo -e "\n\033[32m连接设备成功！请继续输入链接，然后回车，输入2 回车，即可进入fastboot工具箱！\033[0m"
 termux-usb -r -e $SHELL -E "$device_path"  # 关键修正点[6,7](@ref)
