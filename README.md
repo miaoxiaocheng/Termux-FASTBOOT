@@ -8,6 +8,7 @@ root专用：
 bash -c "$(curl -sL https://gitee.com/miaoxiaocheng/Termux-FASTBOOT/raw/main/FASTBOOT.sh)"
 
 免root专用：(记得安装Termux:Api)
+
 bash -c "$(curl -sL https://gitee.com/miaoxiaocheng/Termux-FASTBOOT/raw/main/NOR.sh)"
 
 使用教程！
