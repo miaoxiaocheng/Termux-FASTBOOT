@@ -4,6 +4,7 @@
 复制下面链接，粘贴到Termux回车
 
 root专用：
+
 bash -c "$(curl -sL https://gitee.com/miaoxiaocheng/Termux-FASTBOOT/raw/main/FASTBOOT.sh)"
 
 免root专用：(记得安装Termux:Api)
